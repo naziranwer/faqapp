@@ -5,7 +5,6 @@ export interface Faq {
 }
 
 export const fetchFaqs = async (): Promise<Faq[]> => {
-  // Mocking data instead of an actual API call
   return [
     {
       id: 1,

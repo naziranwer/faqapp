@@ -1,15 +1,21 @@
+"use client";
+
 import { FC, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import FaqItem from "./FaqItem";
-import { fetchFaqs, Faq } from "../services/faqService";
+import { fetchFaqs, Faq } from "@/services/faqService";
 
 const FaqList: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
+
   const {
     data: faqs,
     isLoading,
     error,
-  } = useQuery<Faq[], Error>(["faqs"], fetchFaqs);
+  } = useQuery<Faq[], Error>({
+    queryKey: ["faqs"],
+    queryFn: fetchFaqs,
+  });
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -20,7 +26,7 @@ const FaqList: FC = () => {
   );
 
   if (isLoading) return <div>Loading...</div>;
-  if (error instanceof Error) return <div>Error loading FAQs!</div>;
+  if (error) return <div>Error loading FAQs!</div>;
 
   return (
     <div className="container mx-auto p-4">

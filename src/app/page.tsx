@@ -1,3 +1,4 @@
+"use client";
 import { FC } from "react";
 import { useAuth } from "../context/AuthContext";
 import FaqList from "../components/FaqList";
