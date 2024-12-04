@@ -1,3 +1,4 @@
+"use client";
 import { loginWithGoogle } from "@/firebase/auth";
 import { FC } from "react";
 
