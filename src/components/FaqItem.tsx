@@ -1,5 +1,12 @@
 "use client";
-import { FC, useState } from "react";
+
+import { FC } from "react";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 
 interface FaqItemProps {
   question: string;
@@ -7,17 +14,13 @@ interface FaqItemProps {
 }
 
 const FaqItem: FC<FaqItemProps> = ({ question, answer }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleAnswer = () => setIsOpen(!isOpen);
-
   return (
-    <div className="bg-white shadow p-4 mb-4 rounded">
-      <h3 onClick={toggleAnswer} className="text-lg font-bold cursor-pointer">
-        {question}
-      </h3>
-      {isOpen && <p>{answer}</p>}
-    </div>
+    <Accordion type="single" collapsible className="mb-4">
+      <AccordionItem value="item">
+        <AccordionTrigger>{question}</AccordionTrigger>
+        <AccordionContent>{answer}</AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 };
 

@@ -1,38 +1,39 @@
 "use client";
-import { FC } from "react";
 
+import { FC } from "react";
 import Link from "next/link";
 import { logout } from "@/firebase/auth";
 import { useAuth } from "@/context/AuthContext";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const Navbar: FC = () => {
   const { user } = useAuth();
 
   return (
-    <nav className="bg-gray-800 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-white text-xl">FAQ App</h1>
-        <div className="flex items-center">
+    <nav className="bg-gray-900 p-4">
+      <div className="container mx-auto flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-white">FAQ App</h1>
+        <div className="flex items-center gap-4">
           {user ? (
             <>
-              <img
-                src={user.photoURL || "/assets/logo.png"}
-                alt="User"
-                className="w-8 h-8 rounded-full mr-4"
-              />
-              <span className="text-white mr-4">{user.displayName}</span>
-              <button
-                onClick={logout}
-                className="bg-red-500 text-white px-4 py-2 rounded"
-              >
+              <Avatar>
+                <AvatarImage
+                  src={user?.photoURL || "/assets/logo.png"}
+                  alt="User"
+                />
+                <AvatarFallback>
+                  {user?.displayName?.charAt(0) || "U"}
+                </AvatarFallback>
+              </Avatar>
+              <span className="text-white">{user.displayName}</span>
+              <Button variant="destructive" onClick={logout}>
                 Logout
-              </button>
+              </Button>
             </>
           ) : (
             <Link href="/auth/login">
-              <button className="bg-blue-500 text-white px-4 py-2 rounded">
-                Login with Google
-              </button>
+              <Button>Login with Google</Button>
             </Link>
           )}
         </div>
