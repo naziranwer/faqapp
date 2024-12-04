@@ -17,7 +17,7 @@ const LoginPage: FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-8 flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
+    <div className="container mx-auto p-8 flex justify-center items-center min-h-screen b">
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
         <h2 className="text-2xl font-semibold text-center mb-6 text-gray-800">
           Welcome to FAQ App
